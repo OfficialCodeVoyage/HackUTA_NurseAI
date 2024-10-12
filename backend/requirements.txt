@@ -1,0 +1,13 @@
+Flask
+Flask-RESTful
+Flask-CORS
+Flask-SQLAlchemy
+python-dotenv
+openai
+pydub
+gtts
+requests
+Celery
+redis
+Werkzeug
+python-dotenv
