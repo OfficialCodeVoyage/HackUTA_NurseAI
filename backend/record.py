@@ -9,7 +9,7 @@ FORMAT = pyaudio.paInt16  # 16-bit format
 CHANNELS = 1              # Mono audio
 RATE = 44100              # Sampling rate (44.1 kHz)
 CHUNK = 1024              # Buffer size
-MAX_TIME = 30       # Set maximum recording time 
+MAX_TIME = 30             # Maximum recording time in seconds
 OUTPUT_FILENAME = "output.wav"
 
 # Initialize Flask app
@@ -27,16 +27,21 @@ def recordAudio():
     print("Recording...")
 
     frames = []
+    start_time = time.time()  # Start the timer
 
     # Open the audio stream
     stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
     while not stop_recording:
-        for i in range(int(RATE / CHUNK * MAX_TIME)):
-            data = stream.read(CHUNK)
-            frames.append(data)
-        break
-    
+        data = stream.read(CHUNK)
+        frames.append(data)
+
+        # Check if 30 seconds have passed
+        elapsed_time = time.time() - start_time
+        if elapsed_time >= MAX_TIME:
+            stop_recording = True
+            print("Auto-stopping after 30 seconds...")
+
     print("Recording finished")
 
     # Stop and close the stream
