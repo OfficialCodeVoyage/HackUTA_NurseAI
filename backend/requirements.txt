@@ -5,3 +5,5 @@ openai
 openai-whisper
 torch
 gTTS
+flask_corss
+pydub
