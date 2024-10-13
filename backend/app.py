@@ -10,6 +10,9 @@ from logging.handlers import RotatingFileHandler
 from functools import wraps
 import json
 from datetime import datetime
+from flask_cors import CORS
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -322,6 +325,7 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
+    CORS(app)
     with app.app_context():
         db.create_all()  # Creates the database tables
         app.logger.info("Database tables created")

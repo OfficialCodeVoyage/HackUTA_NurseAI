@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>List Users</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>AI Nurse</h1>
+        <p id="lastUpdated"></p>
+    </header>
+
+    <main>
+        <table class="styled-table" id="usersTable">
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Device Status</th>
+                <th>Room Number</th>
+                <th>IP Address</th>
+                <th>Phone Number</th>
+                <th>Emergency Contact</th>
+                <th>Prescriptions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- User rows will be inserted here -->
+            </tbody>
+        </table>
+    </main>
+</div>
+
+<script>
+    function fetchUsers() {
+        fetch('http://localhost:5000/users')
+            .then(response => response.json())
+            .then(data => {
+                let usersTableBody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+                usersTableBody.innerHTML = ''; // Clear existing data
+
+                data.forEach(user => {
+                    let row = usersTableBody.insertRow();
+
+                    row.insertCell(0).innerHTML = user.id;
+                    row.insertCell(1).innerHTML = user.first_name;
+                    row.insertCell(2).innerHTML = user.last_name;
+                    row.insertCell(3).innerHTML = user.device_status || 'N/A';
+                    row.insertCell(4).innerHTML = user.room_number || 'N/A';
+                    row.insertCell(5).innerHTML = user.IP_address || 'N/A';
+                    row.insertCell(6).innerHTML = user.phone_number || 'N/A';
+                    row.insertCell(7).innerHTML = user.emergency_contact || 'N/A';
+                    row.insertCell(8).innerHTML = JSON.stringify(user.prescriptions || []);
+                });
+
+                // Update the last updated time
+                document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleTimeString();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Fetch users immediately when the page loads
+    fetchUsers();
+
+    // Fetch users every 5 seconds
+    setInterval(fetchUsers, 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{
+  "name": "next-auth",
+  "version": "5.0.0-beta.19",
+  "description": "Authentication for Next.js",
+  "homepage": "https://nextjs.authjs.dev",
+  "repository": "https://github.com/nextauthjs/next-auth.git",
+  "author": "Balázs Orbán <info@balazsorban.com>",
+  "contributors": [
+    "Iain Collins <me@iaincollins.com>",
+    "Nico Domino <yo@ndo.dev>",
+    "Lluis Agusti <hi@llu.lu>",
+    "Thang Huu Vu <hi@thvu.dev>"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    },
+    "./jwt": {
+      "types": "./jwt.d.ts",
+      "import": "./jwt.js"
+    },
+    "./middleware": {
+      "types": "./middleware.d.ts",
+      "import": "./middleware.js"
+    },
+    "./next": {
+      "types": "./next.d.ts",
+      "import": "./next.js"
+    },
+    "./providers": {
+      "types": "./providers/index.d.ts"
+    },
+    "./adapters": {
+      "types": "./adapters.d.ts"
+    },
+    "./providers/*": {
+      "types": "./providers/*.d.ts",
+      "import": "./providers/*.js"
+    },
+    "./react": {
+      "types": "./react.d.ts",
+      "import": "./react.js"
+    },
+    "./webauthn": {
+      "types": "./webauthn.d.ts",
+      "import": "./webauthn.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "react",
+    "nodejs",
+    "oauth",
+    "jwt",
+    "oauth2",
+    "authentication",
+    "nextjs",
+    "csrf",
+    "oidc",
+    "nextauth"
+  ],
+  "files": [
+    "*.d.ts*",
+    "*.js",
+    "lib",
+    "providers",
+    "src"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@auth/core": "0.32.0"
+  },
+  "peerDependencies": {
+    "@simplewebauthn/browser": "^9.0.1",
+    "@simplewebauthn/server": "^9.0.2",
+    "next": "^14 || ^15.0.0-0",
+    "nodemailer": "^6.6.5",
+    "react": "^18.2.0 || ^19.0.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@simplewebauthn/browser": {
+      "optional": true
+    },
+    "@simplewebauthn/server": {
+      "optional": true
+    },
+    "nodemailer": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "18.0.37",
+    "next": "14.2.3",
+    "nodemailer": "^6.9.3",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "build": "pnpm clean && pnpm providers && tsc",
+    "clean": "rm -rf *.js *.d.ts* lib providers",
+    "dev": "pnpm providers && tsc -w",
+    "test": "vitest run -c ../utils/vitest.config.ts",
+    "test:watch": "vitest -c ../utils/vitest.config.ts",
+    "providers": "node ../utils/scripts/providers"
+  }
+}
