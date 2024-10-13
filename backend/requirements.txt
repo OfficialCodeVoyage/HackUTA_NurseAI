@@ -7,3 +7,7 @@ torch
 gTTS
 flask_corss
 pydub
+threading
+pyaudio
+wave
+time
