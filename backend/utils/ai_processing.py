@@ -10,7 +10,7 @@ def transcribe_audio(wav_path):
     Returns the transcribed text.
     """
     try:
-        openai.api_key = os.getenv('OPENAI_API_KEY')
+        openai.api_key = "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"
         with open(wav_path, 'rb') as audio_file:
             transcript = openai.Audio.transcribe("whisper-1", audio_file)
         return transcript['text']
@@ -24,9 +24,9 @@ def generate_ai_response(user_input):
     Returns the response text.
     """
     try:
-        openai.api_key = os.getenv('OPENAI_API_KEY')
+        openai.api_key = "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"
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo",  # Replace with "gpt-4" if available
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": user_input}

@@ -1,107 +1,62 @@
 # utils/audio_processing.py
 
-from pydub import AudioSegment
 import os
 import logging
-from gtts import gTTS
+import openai
+import json
+from pydub import AudioSegment  # Ensure pydub is installed
 
-# Configure logging for this module
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-handler = logging.FileHandler(os.path.join(os.getcwd(), 'logs', 'audio_processing.log'))
-formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+# Set up OpenAI API key (replace with your actual API key)
+openai.api_key = "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"
 
-# Optional: Explicitly set the FFmpeg path if it's not in the system PATH
-# Replace the path below with the actual path to ffmpeg.exe on your system
-# Example for Windows:
-# FFmpeg is installed at C:\ffmpeg\bin\ffmpeg.exe
-FFMPEG_PATH = "C:\ffmpeg\bin\ffmpeg.exe"
-
-if FFMPEG_PATH and os.path.isfile(FFMPEG_PATH):
-    AudioSegment.converter = FFMPEG_PATH
-    logger.info(f"FFmpeg path set to: {FFMPEG_PATH}")
-else:
-    # pydub will attempt to find ffmpeg in the system PATH
-    logger.warning("FFmpeg not found in environment variables. Attempting to use system PATH.")
-
-
-def convert_ogg_to_wav(ogg_path):
+def convert_to_wav(input_path, output_path):
     """
-    Converts an OGG file to WAV format.
-
-    Parameters:
-        ogg_path (str): Path to the input OGG file.
-
-    Returns:
-        str: Path to the converted WAV file.
+    Converts an audio file to WAV format.
     """
     try:
-        logger.info(f"Converting OGG to WAV: {ogg_path}")
-        audio = AudioSegment.from_file(ogg_path, format='ogg')
-        wav_path = ogg_path.replace('.ogg', '.wav')
-        audio.export(wav_path, format='wav')
-        logger.info(f"Successfully converted to WAV: {wav_path}")
-        return wav_path
+        audio = AudioSegment.from_file(input_path)
+        audio.export(output_path, format="wav")
+        logging.info(f"Converted {input_path} to {output_path}")
+        return output_path
     except Exception as e:
-        logger.error(f"Error converting OGG to WAV: {e}")
+        logging.error(f"Error converting audio: {e}")
         raise e
 
-
-def convert_mp3_to_wav(mp3_path):
+def normalize_audio(wav_path):
     """
-    Converts an MP3 file to WAV format.
-
-    Parameters:
-        mp3_path (str): Path to the input MP3 file.
-
-    Returns:
-        str: Path to the converted WAV file.
+    Normalizes the audio file to ensure consistent volume.
     """
     try:
-        logger.info(f"Converting MP3 to WAV: {mp3_path}")
-        audio = AudioSegment.from_mp3(mp3_path)
-        wav_path = mp3_path.replace('.mp3', '.wav')
-        audio.export(wav_path, format='wav')
-        logger.info(f"Successfully converted to WAV: {wav_path}")
-        return wav_path
+        audio = AudioSegment.from_wav(wav_path)
+        normalized_audio = audio.normalize()
+        normalized_audio.export(wav_path, format="wav")
+        logging.info(f"Normalized audio at {wav_path}")
     except Exception as e:
-        logger.error(f"Error converting MP3 to WAV: {e}")
+        logging.error(f"Error normalizing audio: {e}")
         raise e
 
-
-def convert_text_to_speech(text, reference_path):
+def transcribe_audio(wav_path):
     """
-    Converts text to speech using gTTS and saves it as an OGG file with the Opus codec.
-
-    Parameters:
-        text (str): The text to convert to speech.
-        reference_path (str): Reference path to derive the response audio filename.
-
-    Returns:
-        str: Path to the generated OGG audio file.
+    Transcribes the audio file using OpenAI's Whisper model.
     """
     try:
-        logger.info("Starting Text-to-Speech conversion.")
-
-        # Initialize gTTS
-        tts = gTTS(text=text, lang='en')
-        temp_mp3_path = reference_path.replace('.wav', '_response.mp3')
-        tts.save(temp_mp3_path)
-        logger.info(f"TTS output saved as MP3: {temp_mp3_path}")
-
-        # Convert MP3 to OGG with Opus codec
-        audio = AudioSegment.from_mp3(temp_mp3_path)
-        response_ogg_path = temp_mp3_path.replace('_response.mp3', '_response.ogg')
-        audio.export(response_ogg_path, format='ogg', codec='libopus', bitrate='64k')  # Adjust bitrate as needed
-        logger.info(f"Converted TTS output to OGG Opus: {response_ogg_path}")
-
-        # Remove temporary MP3 file
-        os.remove(temp_mp3_path)
-        logger.info(f"Removed temporary MP3 file: {temp_mp3_path}")
-
-        return response_ogg_path
+        with open(wav_path, "rb") as audio_file:
+            response = openai.Audio.transcribe("whisper-1", audio_file)
+            transcript = response["text"]
+            logging.info(f"Transcription completed for {wav_path}")
+            return transcript
     except Exception as e:
-        logger.error(f"Error during Text-to-Speech conversion: {e}")
+        logging.error(f"Error transcribing audio: {e}")
+        raise e
+
+def save_transcription(transcription, output_path):
+    """
+    Saves the transcription to a text file.
+    """
+    try:
+        with open(output_path, "w") as file:
+            file.write(transcription)
+        logging.info(f"Saved transcription to {output_path}")
+    except Exception as e:
+        logging.error(f"Error saving transcription: {e}")
         raise e
