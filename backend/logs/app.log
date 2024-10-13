@@ -1,2 +1,102 @@
-2024-10-12 17:43:30,810 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:29]
-2024-10-12 17:43:31,122 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:29]
+2024-10-12 21:44:16,820 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:232]
+2024-10-12 21:44:19,815 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 21:44:19,818 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:232]
+2024-10-12 21:44:35,605 INFO: Received /process-audio request [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:185]
+2024-10-12 21:44:35,606 INFO: Request headers: Multipart: form-data
+User-Agent: PostmanRuntime/7.42.0
+Accept: */*
+Postman-Token: 0d740b58-f67c-4d95-a3f3-566a616402ea
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------150157409849377161947950
+Content-Length: 63727
+
+ [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:186]
+2024-10-12 21:44:35,607 INFO: Request content type: multipart/form-data; boundary=--------------------------150157409849377161947950 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:187]
+2024-10-12 21:44:35,608 INFO: Request form data: ImmutableMultiDict([('user_id', '1')]) [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:188]
+2024-10-12 21:44:35,608 INFO: Request files: ImmutableMultiDict([('audio ', <FileStorage: 'test_speech.mp3' ('audio/mpeg')>)]) [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:189]
+2024-10-12 21:44:35,608 WARNING: No audio file provided in the request [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:192]
+2024-10-12 21:45:31,122 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 21:45:31,125 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:235]
+2024-10-12 21:45:34,222 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 21:45:34,224 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:235]
+2024-10-12 21:45:36,033 INFO: Received /process-audio request [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:185]
+2024-10-12 21:45:36,033 INFO: Request headers: Multipart: form-data
+User-Agent: PostmanRuntime/7.42.0
+Accept: */*
+Postman-Token: 5ad2df09-02fb-4fe1-be64-fc09a9c57c9a
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------383411986238466990492466
+Content-Length: 63727
+
+ [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:186]
+2024-10-12 21:45:36,033 INFO: Request content type: multipart/form-data; boundary=--------------------------383411986238466990492466 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:187]
+2024-10-12 21:45:36,035 INFO: Request form data: ImmutableMultiDict([('user_id', '1')]) [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:188]
+2024-10-12 21:45:36,035 INFO: Request files: {'audio': <FileStorage: 'test_speech.mp3' ('audio/mpeg')>} [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:192]
+2024-10-12 21:45:36,036 INFO: Saved audio file to C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\temp\test_speech.mp3 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:218]
+2024-10-12 21:45:36,049 INFO: Enqueued audio processing task with ID a86a7b45-8e2c-4d0b-aee1-42f8384ba266 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:222]
+2024-10-12 21:47:55,928 INFO: Created new user with ID 2 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:109]
+2024-10-12 21:48:01,930 INFO: Fetched user with ID 2 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:177]
+2024-10-12 21:48:11,459 INFO: Received /process-audio request [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:185]
+2024-10-12 21:48:11,459 INFO: Request headers: Multipart: form-data
+User-Agent: PostmanRuntime/7.42.0
+Accept: */*
+Postman-Token: 418c0ae8-4ea3-496b-b2f3-9dd7eb194d93
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------058829157234660414368941
+Content-Length: 63727
+
+ [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:186]
+2024-10-12 21:48:11,460 INFO: Request content type: multipart/form-data; boundary=--------------------------058829157234660414368941 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:187]
+2024-10-12 21:48:11,461 INFO: Request form data: ImmutableMultiDict([('user_id', '2')]) [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:188]
+2024-10-12 21:48:11,461 INFO: Request files: {'audio': <FileStorage: 'test_speech.mp3' ('audio/mpeg')>} [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:192]
+2024-10-12 21:48:11,462 INFO: Saved audio file to C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\temp\test_speech.mp3 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:218]
+2024-10-12 21:48:11,468 INFO: Enqueued audio processing task with ID 69a51303-08f9-493a-bea9-b8d9d13f3953 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:222]
+2024-10-12 22:15:09,733 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 22:15:09,736 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:279]
+2024-10-12 22:15:13,203 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 22:15:13,206 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:279]
+2024-10-12 22:15:13,314 INFO: Panic button triggered [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:184]
+2024-10-12 22:15:13,322 INFO: Emergency message: EMERGENCY ALERT! 
+User: John Doe
+Room: 101
+Device Status: Active
+IP Address: 192.168.1.1
+Phone Number: 1234567890
+Emergency Contact: 0987654321 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:204]
+2024-10-12 22:17:23,797 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 22:17:23,801 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:313]
+2024-10-12 22:17:32,986 INFO: NurseAI backend startup [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:43]
+2024-10-12 22:17:32,989 INFO: Database tables created [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:327]
+2024-10-12 22:18:14,250 INFO: Fall detection triggered [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:228]
+2024-10-12 22:18:14,258 INFO: Emergency message: EMERGENCY ALERT! 
+User John Doe has fallen.
+Location: Living Room
+Time: 2024-10-12 12:00:00
+Room: 101
+Device Status: Active
+IP Address: 192.168.1.1
+Phone Number: 1234567890
+Emergency Contact: 0987654321 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:250]
+2024-10-12 22:21:41,734 INFO: Received /process-audio request [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:277]
+2024-10-12 22:21:41,734 INFO: Request headers: Multipart: form-data
+User-Agent: PostmanRuntime/7.42.0
+Accept: */*
+Postman-Token: 309a3375-41f3-48f6-9030-8875b23c5446
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------821504439062230388986404
+Content-Length: 127806
+
+ [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:278]
+2024-10-12 22:21:41,734 INFO: Request content type: multipart/form-data; boundary=--------------------------821504439062230388986404 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:279]
+2024-10-12 22:21:41,736 INFO: Request form data: ImmutableMultiDict([('user_id', '2')]) [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:280]
+2024-10-12 22:21:41,736 INFO: Request files: {'audio': <FileStorage: 'test_ai.mp3' ('audio/mpeg')>} [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:284]
+2024-10-12 22:21:41,737 INFO: Saved audio file to C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\temp\test_ai.mp3 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:310]
+2024-10-12 22:21:41,745 INFO: Enqueued audio processing task with ID 1e1222c9-c367-4cf5-94eb-d52c7facf356 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\app.py:314]

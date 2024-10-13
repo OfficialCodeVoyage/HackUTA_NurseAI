@@ -1,13 +1,7 @@
 Flask
-Flask-RESTful
-Flask-CORS
+python-dotenv
 Flask-SQLAlchemy
-python-dotenv
 openai
-pydub
-gtts
-requests
-Celery
-redis
-Werkzeug
-python-dotenv
+openai-whisper
+torch
+gTTS

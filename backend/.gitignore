@@ -1,2 +1,23 @@
-myenv
+# .gitignore
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
 .env
+
+# Database
+*.db
+
+# Logs
+logs/
+
+# Temporary files
+temp/

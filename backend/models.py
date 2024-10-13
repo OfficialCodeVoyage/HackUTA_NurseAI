@@ -1,6 +1,6 @@
-# models.py
+# backend/models.py
 
-from app import db
+from extensions import db
 from datetime import datetime
 
 class User(db.Model):
@@ -16,6 +16,19 @@ class User(db.Model):
     IP_address = db.Column(db.String(100), nullable=True)
     phone_number = db.Column(db.String(20), nullable=True)
     emergency_contact = db.Column(db.String(100), nullable=True)
-    prescriptions = db.Column(db.String, nullable=True)  # Stores medication names and frequencies as JSON string
+    prescriptions = db.Column(db.String, nullable=True)  # Stores JSON string
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
+
+class Task(db.Model):
+    __tablename__ = 'tasks'
+
+    id = db.Column(db.Integer, primary_key=True)
+    task_id = db.Column(db.String(36), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default='PENDING')  # PENDING, IN_PROGRESS, SUCCESS, FAILURE
+    result = db.Column(db.String, nullable=True)  # Path to the result file or error message
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
+
+    user = db.relationship('User', backref=db.backref('tasks', lazy=True))

@@ -1,30 +1,15 @@
-2024-10-12 17:18:15,434 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:20:25,404 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:20:57,440 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:23:55,527 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:25,252 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,859 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,863 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,871 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,876 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,878 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,890 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,892 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,896 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,899 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,904 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,908 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,908 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,915 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,938 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,941 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:27,964 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:30,475 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:30,476 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:30,476 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:30,480 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:30,495 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:31,944 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:31,948 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:33,477 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
-2024-10-12 17:30:35,057 WARNING: FFmpeg not found in environment variables. Attempting to use system PATH.
+2024-10-12 22:15:08,956 INFO: Loading Whisper model... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:36]
+2024-10-12 22:15:09,584 INFO: Whisper model loaded successfully. [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:38]
+2024-10-12 22:15:12,416 INFO: Loading Whisper model... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:36]
+2024-10-12 22:15:13,072 INFO: Whisper model loaded successfully. [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:38]
+2024-10-12 22:17:22,498 INFO: Loading Whisper model... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:36]
+2024-10-12 22:17:23,638 INFO: Whisper model loaded successfully. [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:38]
+2024-10-12 22:17:32,169 INFO: Loading Whisper model... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:36]
+2024-10-12 22:17:32,854 INFO: Whisper model loaded successfully. [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:38]
+2024-10-12 22:21:41,744 INFO: Enqueued audio processing task with ID 1e1222c9-c367-4cf5-94eb-d52c7facf356 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:146]
+2024-10-12 22:21:41,749 INFO: Processing audio for task_id: 1e1222c9-c367-4cf5-94eb-d52c7facf356, user_id: 2 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:72]
+2024-10-12 22:21:43,000 INFO: Transcribed Text:  Hello, what medications do I need to take today? [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:87]
+2024-10-12 22:21:43,001 INFO: Generating AI response... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:105]
+2024-10-12 22:21:43,705 INFO: AI Response: Hello Jack! Based on the information provided, the medications you need to take today are Amlodophine and Advil. If you have any more questions or need further assistance, feel free to ask! [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:109]
+2024-10-12 22:21:43,705 INFO: Converting AI response to audio... [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:112]
+2024-10-12 22:21:45,276 INFO: AI response audio saved at temp\response_2_1e1222c9-c367-4cf5-94eb-d52c7facf356.mp3 [in C:\Users\xxxxx\Desktop\hackuta\HackUTA_NurseAI\backend\background_tasks.py:118]
