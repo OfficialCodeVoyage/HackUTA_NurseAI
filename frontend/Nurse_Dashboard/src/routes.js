@@ -44,5 +44,10 @@ export const Routes = {
     Tabs: { path: "/components/tabs" },
     Tooltips: { path: "/components/tooltips" },
     Toasts: { path: "/components/toasts" },
-    WidgetsComponent: { path: "/components/widgets" }
+    WidgetsComponent: { path: "/components/widgets" },
+    Settings: { path: "/settings" },
+    Upgrade: { path: "/upgrade" },
+    Users: { path: "/users" }, // add it here
+    BootstrapTables: { path: "/tables/bootstrap-tables" },
+    Billing: { path: "/examples/billing" },
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "../routes";
+import Users from "./Users";  
 
 // pages
 import Presentation from "./Presentation";
@@ -133,6 +134,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Tabs.path} component={Tabs} />
     <RouteWithSidebar exact path={Routes.Tooltips.path} component={Tooltips} />
     <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} />
+    <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
 
     {/* documentation */}
     <RouteWithSidebar exact path={Routes.DocsOverview.path} component={DocsOverview} />
