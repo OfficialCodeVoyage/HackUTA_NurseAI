@@ -45,6 +45,7 @@ def create_app():
     app.logger.setLevel(logging.INFO)
     app.logger.info('NurseAI backend startup')
 
+
     # ----------------------- Authentication Decorator -----------------------
 
     def require_api_key(f):
