@@ -11,8 +11,11 @@ from functools import wraps
 import json
 from datetime import datetime
 from flask_cors import CORS
+import threading
+from record import recordAudio, stop_recording_flag, reset_stop_recording_flag
 
-
+# Shared variable to track recording thread
+recording_thread = None
 
 def create_app():
     app = Flask(__name__)
@@ -56,8 +59,23 @@ def create_app():
             return f(*args, **kwargs)
         return decorated
 
-    # ----------------------- User Management Routes -----------------------
+    @app.route('/record', methods=['GET'])
+    def record():
+        global recording_thread
+        
+        if recording_thread is None or not recording_thread.is_alive():
+            # Start recording
+            reset_stop_recording_flag()
+            recording_thread = threading.Thread(target=recordAudio)
+            recording_thread.start()
+            return jsonify({"message": "Recording started"})
+        else:
+            # If recording is already in progress, stop it
+            stop_recording_flag()
+            recording_thread.join()  # Wait for the recording thread to finish
+            return jsonify({"message": "Recording stopped"})
 
+    # ----------------------- User Management Routes -----------------------
     def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ['mp3', 'wav']
 
