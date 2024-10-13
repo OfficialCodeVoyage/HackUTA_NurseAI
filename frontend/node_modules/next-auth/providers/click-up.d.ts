@@ -1,3 +1,0 @@
-export * from "@auth/core/providers/click-up";
-export { default } from "@auth/core/providers/click-up";
-//# sourceMappingURL=click-up.d.ts.map
