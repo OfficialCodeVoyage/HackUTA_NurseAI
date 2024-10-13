@@ -1,75 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>AI Nurse - List Users</title>
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-    <title>List Users</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>AI Nurse</h1>
-        <p id="lastUpdated"></p>
-    </header>
+    <!-- Container -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>AI Nurse Dashboard</h1>
+            <p id="lastUpdated"></p>
+        </header>
 
-    <main>
-        <table class="styled-table" id="usersTable">
-            <thead>
-            <tr>
-                <th>User ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Device Status</th>
-                <th>Room Number</th>
-                <th>IP Address</th>
-                <th>Phone Number</th>
-                <th>Emergency Contact</th>
-                <th>Prescriptions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- User rows will be inserted here -->
-            </tbody>
-        </table>
-    </main>
-</div>
+        <!-- Main Content -->
+        <main>
+            <!-- Search and Refresh -->
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="Search users...">
+                <button id="refreshButton"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
 
-<script>
-    function fetchUsers() {
-        fetch('http://localhost:5000/users')
-            .then(response => response.json())
-            .then(data => {
-                let usersTableBody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
-                usersTableBody.innerHTML = ''; // Clear existing data
+            <!-- Users Table -->
+            <table class="styled-table" id="usersTable">
+                <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Device Status</th>
+                    <th>Room Number</th>
+                    <th>IP Address</th>
+                    <th>Phone Number</th>
+                    <th>Emergency Contact</th>
+                    <th>Prescriptions</th>
+                    <th>Actions</th> <!-- New column -->
+                </tr>
+                </thead>
+                <tbody>
+                <!-- User rows will be inserted here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
 
-                data.forEach(user => {
-                    let row = usersTableBody.insertRow();
-
-                    row.insertCell(0).innerHTML = user.id;
-                    row.insertCell(1).innerHTML = user.first_name;
-                    row.insertCell(2).innerHTML = user.last_name;
-                    row.insertCell(3).innerHTML = user.device_status || 'N/A';
-                    row.insertCell(4).innerHTML = user.room_number || 'N/A';
-                    row.insertCell(5).innerHTML = user.IP_address || 'N/A';
-                    row.insertCell(6).innerHTML = user.phone_number || 'N/A';
-                    row.insertCell(7).innerHTML = user.emergency_contact || 'N/A';
-                    row.insertCell(8).innerHTML = JSON.stringify(user.prescriptions || []);
+    <!-- JavaScript -->
+    <script>
+        // Function to fetch users
+        function fetchUsers() {
+            fetch('http://localhost:5000/users')
+                .then(response => response.json())
+                .then(data => {
+                    displayUsers(data);
+                    // Update the last updated time
+                    document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleTimeString();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
                 });
+        }
 
-                // Update the last updated time
-                document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleTimeString();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+        // Function to display users in the table
+        function displayUsers(users) {
+            let usersTableBody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+            usersTableBody.innerHTML = ''; // Clear existing data
+
+            users.forEach(user => {
+                let row = usersTableBody.insertRow();
+
+                row.insertCell(0).innerHTML = user.id;
+                row.insertCell(1).innerHTML = user.first_name;
+                row.insertCell(2).innerHTML = user.last_name;
+                row.insertCell(3).innerHTML = user.device_status || 'N/A';
+                row.insertCell(4).innerHTML = user.room_number || 'N/A';
+                row.insertCell(5).innerHTML = user.IP_address || 'N/A';
+                row.insertCell(6).innerHTML = user.phone_number || 'N/A';
+                row.insertCell(7).innerHTML = user.emergency_contact || 'N/A';
+                row.insertCell(8).innerHTML = user.prescriptions.map(p => `${p.name} (${p.dosage}, ${p.frequency})`).join('<br>') || 'N/A';
+
+                // Create Delete button
+                let deleteCell = row.insertCell(9);
+                let deleteButton = document.createElement('button');
+                deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Delete';
+                deleteButton.classList.add('delete-button');
+                deleteButton.setAttribute('data-user-id', user.id);
+                deleteCell.appendChild(deleteButton);
             });
-    }
+        }
 
-    // Fetch users immediately when the page loads
-    fetchUsers();
+        // Function to filter users based on search input
+        function filterUsers() {
+            let searchValue = document.getElementById('searchInput').value.toLowerCase();
+            let tableRows = document.getElementById('usersTable').getElementsByTagName('tbody')[0].rows;
 
-    // Fetch users every 5 seconds
-    setInterval(fetchUsers, 5000);
-</script>
+            for (let row of tableRows) {
+                let rowText = row.innerText.toLowerCase();
+                row.style.display = rowText.includes(searchValue) ? '' : 'none';
+            }
+        }
+
+        // Function to delete a user
+        function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                fetch(`http://localhost:5000/users/${userId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // Include any authentication headers here if needed
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(data => { throw data; });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('User deleted successfully.');
+                    fetchUsers(); // Refresh the users list
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error: ' + (error.error || 'An error occurred while deleting the user.'));
+                });
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('searchInput').addEventListener('keyup', filterUsers);
+        document.getElementById('refreshButton').addEventListener('click', fetchUsers);
+
+        // Add event listener for delete buttons using event delegation
+        document.getElementById('usersTable').addEventListener('click', function(event) {
+            if (event.target && event.target.matches('button.delete-button, button.delete-button *')) {
+                let button = event.target.closest('button.delete-button');
+                let userId = button.getAttribute('data-user-id');
+                deleteUser(userId);
+            }
+        });
+
+        // Fetch users immediately when the page loads
+        fetchUsers();
+
+        // Fetch users every 60 seconds
+        setInterval(fetchUsers, 60000);
+    </script>
 </body>
 </html>

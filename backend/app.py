@@ -61,6 +61,21 @@ def create_app():
     def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ['mp3', 'wav']
 
+    # Delete a user by ID
+    @app.route('/users/<int:user_id>', methods=['DELETE'])
+    @require_api_key
+    def delete_user(user_id):
+        user = User.query.get(user_id)
+        if not user:
+            app.logger.warning(f"User with ID {user_id} not found")
+            return jsonify({'error': 'User not found'}), 404
+
+        db.session.delete(user)
+        db.session.commit()
+
+        app.logger.info(f"Deleted user with ID {user_id}")
+        return jsonify({'message': 'User deleted successfully'}), 200
+
     # Create a new user
     @app.route('/users', methods=['POST'])
     @require_api_key
@@ -330,4 +345,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Creates the database tables
         app.logger.info("Database tables created")
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

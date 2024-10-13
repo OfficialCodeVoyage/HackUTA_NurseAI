@@ -1,59 +1,92 @@
+/* Stylesheet for AI Nurse Dashboard */
+
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    color: #333;
 }
 
 .container {
-    max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    padding-top: 20px;
 }
 
+/* Header Styles */
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-h1 {
+header h1 {
     font-size: 2.5em;
-    color: #333;
+    color: #2c3e50;
+    margin: 0;
 }
 
-#lastUpdated {
-    font-style: italic;
-    color: #888;
-    margin-top: 10px;
+header p {
+    font-size: 1em;
+    color: #7f8c8d;
 }
 
+/* Controls Styles */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.controls input[type="text"] {
+    width: 90%;
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.controls button {
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controls button i {
+    margin-right: 5px;
+}
+
+.controls button:hover {
+    background-color: #2980b9;
+}
+
+/* Table Styles */
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.1em;
-    text-align: left;
-    margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    font-size: 0.9em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .styled-table thead tr {
-    background-color: #007BFF;
+    background-color: #2c3e50;
     color: #ffffff;
     text-align: left;
-    font-weight: bold;
 }
 
-.styled-table th, .styled-table td {
+.styled-table th,
+.styled-table td {
     padding: 12px 15px;
+    border: 1px solid #ddd;
 }
 
 .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    background-color: #ffffff;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -61,11 +94,62 @@ h1 {
 }
 
 .styled-table tbody tr:hover {
-    background-color: #e0e0e0;
-    cursor: pointer;
+    background-color: #eaeaea;
 }
 
 .styled-table tbody tr.active-row {
     font-weight: bold;
-    color: #007BFF;
+    color: #2c3e50;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+    }
+
+    .controls input[type="text"],
+    .controls button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .styled-table thead {
+        display: none;
+    }
+
+    .styled-table, .styled-table tbody, .styled-table tr, .styled-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .styled-table tr {
+        margin-bottom: 15px;
+    }
+
+    .styled-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .styled-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+
+/* Add these styles to your existing styles.css file */
+.status-active {
+    color: green;
+}
+
+.status-inactive {
+    color: red;
 }
